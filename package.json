@@ -1,0 +1,30 @@
+{
+  "name": "metube",
+  "version": "1.0.0",
+  "description": "videos",
+  "main": "index.js",
+  "scripts": {
+    "st": "nodemon --exec babel-node src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WB97/metube_ver2.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/WB97/metube_ver2/issues"
+  },
+  "homepage": "https://github.com/WB97/metube_ver2#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.14.8",
+    "@babel/core": "^7.15.0",
+    "@babel/node": "^7.14.9",
+    "@babel/preset-env": "^7.15.0",
+    "nodemon": "^2.0.12"
+  },
+  "type": "module"
+}
