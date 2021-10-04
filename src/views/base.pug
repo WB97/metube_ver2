@@ -1,0 +1,34 @@
+doctype doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet" href="https://unpkg.com/mvp.css")
+        title #{pageTitle} | Metube
+    body
+        header
+            h1=pageTitle
+            nav
+                ul 
+                    li 
+                        a(href="/") Home
+                    if !loggedIn
+                        li
+                            a(href="/login") Login
+                        li
+                            a(href="/join") Join
+                    else
+                        li 
+                            a(href="#") #{loggedInUser.name} profile
+                        li 
+                            a(href="/users/edit") Edit-Profile
+                        li 
+                            a(href="/videos/upload") Upload Video
+                        li
+                            a(href="/users/logout") Logout
+                    li
+                        a(href="/search") Search
+        main 
+            block content
+    include partials/footer.pug
