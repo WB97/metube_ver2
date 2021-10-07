@@ -1,12 +1,7 @@
 import mongoose from "mongoose";
 
-// export const formatHashtags = (hashtags) => {
-//   return hashtags
-//     .split(",")
-//     .map((word) => (word.startsWith("#") ? word : `#${word}`));
-// };
-
 const videoSchema = new mongoose.Schema({
+  fileUrl: { type: String, required: true },
   title: { type: String, required: true },
   description: { type: String, required: true },
   createdAt: { type: Date, required: true, default: Date.now },
@@ -15,6 +10,7 @@ const videoSchema = new mongoose.Schema({
     views: { type: Number, default: 0, require: true },
     rating: { type: Number, default: 0, require: true },
   },
+  owner: { type: mongoose.Schema.Types.ObjectId, required: true, ref: "user" },
 });
 
 videoSchema.static("formatHashtags", function (hashtags) {
@@ -22,12 +18,6 @@ videoSchema.static("formatHashtags", function (hashtags) {
     .split(",")
     .map((word) => (word.startsWith("#") ? word : `#${word}`));
 });
-
-// videoSchema.pre("save", async function () {
-//   this.hashtags = this.hashtags[0]
-//     .split(",")
-//     .map((word) => (word.startsWith("#") ? word : `#${word}`));
-// });
 
 const video = mongoose.model("video", videoSchema);
 export default video;

@@ -1,0 +1,15 @@
+extends ../base.pug
+
+block content
+    video(src="/"+video.fileUrl, controls)
+    div
+        p=video.description
+        small=video.createdAt
+    small Upload by 
+        a(href=`/users/${video.owner._id}`) #{video.owner.name}
+        br
+    if loggedInUser._id==video.owner._id
+        a(href=`${video.id}/edit`) Edit Video
+        br
+        a(href=`${video.id}/remove`) Delete Video
+        br
