@@ -1,10 +1,15 @@
 mixin videoList(video)
-     div 
-        h4
-            a(href=`/videos/${video.id}`)=video.title
-        p=video.description
-        ul
-            each hashtags in video.hashtags
-                li=hashtags
-        small=video.createdAt
-        hr
+     a(href=`/videos/${video.id}`).video-mixin
+        div.video-mixin_thumb
+        div.video-mixin_data
+            span.video-mixin_title=video.title
+            div.video-mixin_meta
+                span #{video.meta.views} views
+                br
+                span #{video.owner.name}
+        //- p=video.description
+        //- ul
+        //-     each hashtags in video.hashtags
+        //-         li=hashtags
+        //- small=video.createdAt
+        //- hr 

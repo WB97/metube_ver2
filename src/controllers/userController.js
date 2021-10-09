@@ -4,7 +4,7 @@ import bcrypt from "bcrypt";
 import fetch from "node-fetch";
 
 export const getJoin = (req, res) => {
-  return res.render("users/join", {
+  return res.render("join", {
     pageTitle: "Create Account",
   });
 };
@@ -13,13 +13,13 @@ export const postJoin = async (req, res) => {
   const { name, username, email, password, password2, location } = req.body;
   const exists = await User.exists({ $or: [{ username }, { email }] });
   if (password !== password2) {
-    return res.status(400).render("users/join", {
+    return res.status(400).render("join", {
       pageTitle: "Create Account",
       errorMessage: "Password confirmation does not match.",
     });
   }
   if (exists) {
-    return res.status(400).render("users/join", {
+    return res.status(400).render("join", {
       pageTitle: "Create Account",
       errorMessage: "This username/email is already taken.",
     });
@@ -34,7 +34,7 @@ export const postJoin = async (req, res) => {
     });
     return res.redirect("/login");
   } catch (error) {
-    return res.status(400).render("users/join", {
+    return res.status(400).render("join", {
       pageTitle: "Create Account",
       errorMessage: error._message,
     });
@@ -224,8 +224,13 @@ export const postChangePassword = async (req, res) => {
 
 export const profile = async (req, res) => {
   const { id } = req.params;
-  const user = await User.findById(id).populate("videos");
-  console.log(user);
+  const user = await User.findById(id).populate({
+    path: "videos",
+    populate: {
+      path: "owner",
+      model: "user",
+    },
+  });
   if (!user) {
     return res.status(404).render("404", { pageTitle: "User Not found" });
   }

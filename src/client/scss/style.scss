@@ -1,0 +1,41 @@
+@import "./config/_variables.scss";
+@import "./config/_reset.scss";
+
+// Components
+@import "./components/header.scss";
+@import "./components/footer.scss";
+@import "./components/video.scss";
+@import "./components/shared.scss";
+@import "./components/forms.scss";
+@import "./components/social-login.scss";
+
+// Screens
+// @import "./screens/home.scss";
+@import "./screens/search.scss";
+@import "./screens/profile.scss";
+@import "./screens/edit-profile.scss";
+
+body {
+  background-color: $bg;
+  color: $white;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+//Defaults
+
+a {
+  color: $white;
+  text-decoration: none;
+}
+
+main {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+
+hr {
+  border: 0.5px solid rgba($color: #ffffff, $alpha: 0.3);
+}

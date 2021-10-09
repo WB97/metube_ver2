@@ -2,8 +2,14 @@ extends ../base.pug
 include ../mixins/video.pug
 
 block content
-    ul 
+    div.profile_data
+        img(src="/"+user.avatarUrl).avatar
+        div #{user.name}
+    div.video-grid
         each video in user.videos
             +videoList(video)
+            +videoList(video)
+            +videoList(video)
+            +videoList(video)
         else
-            h3 Not found video.
+            span.empty_message Video not found.
