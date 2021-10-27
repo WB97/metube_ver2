@@ -22,5 +22,8 @@ header
                     a(href=`/users/${loggedInUser._id}`)
                         if loggedInUser.avatarUrl === ""
                             span (●'◡'●)
-                        else 
-                            img(src="/"+loggedInUser.avatarUrl).header_avatar
+                        else
+                            if loggedInUser.socialOnly
+                                img(src=loggedInUser.avatarUrl).header_avatar
+                            else
+                                img(src="/"+loggedInUser.avatarUrl).header_avatar
