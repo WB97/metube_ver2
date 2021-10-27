@@ -2,14 +2,34 @@ extends ../base.pug
 
 block content
     video(src="/"+video.fileUrl, controls)
-    div
-        p=video.description
-        small=video.createdAt
-    small Upload by 
-        a(href=`/users/${video.owner._id}`) #{video.owner.name}
-        br
-    if loggedInUser._id==video.owner._id
-        a(href=`${video.id}/edit`) Edit Video
-        br
-        a(href=`${video.id}/remove`) Delete Video
-        br
+    div#videoContainer(data-Id=video._id)
+        button#play Play
+        button#mute Mute
+        span#time 00:00/00:00
+        input(type="range" step="0.1" min="0" max="1")#volume
+    if loggedIn
+        div.video_write
+            form.video_comment-form#commentForm
+                textarea(cols="30", rows="10", placeholder="Write a comment")
+                button Add Comment
+    div.video_comments
+        ul
+            each comment in video.comments.reverse()
+                li(data-id=comment._id).video_comment=comment.text
+
+
+    //- div
+    //-     p=video.description
+    //-     small=video.createdAt
+    //- small Upload by 
+    //-     a(href=`/users/${video.owner._id}`) #{video.owner.name}
+    //-     br
+    //- if loggedInUser._id==video.owner._id 
+    //-     a(href=`${video.id}/edit`) Edit Video
+    //-     br
+    //-     a(href=`${video.id}/remove`) Delete Video
+    //-     br
+
+block scripts
+    script(src="/static/js/videoPlayer.js")
+    script(src="/static/js/commentSection.js")
